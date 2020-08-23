@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -70,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 mVerificationCode = verification;
                 mSend.setText("Verify Code");
             }
+
+            @Override
+            public void onCodeAutoRetrievalTimeOut(String s) {
+                super.onCodeAutoRetrievalTimeOut(s);
+                Toast.makeText(MainActivity.this, "CodeAutoRetrievalTimeOutOccurred: "+s, Toast.LENGTH_SHORT).show();
+            }
         };
     }
 
@@ -92,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
     private void userIsLoggedIn() {
         FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //Extra security
+        // Extra security
         // even if everything was is OK but something gone wrong
         if (fUser != null){
             startActivity(new Intent(this, MainPageActivity.class));
