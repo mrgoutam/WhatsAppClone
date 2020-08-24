@@ -30,7 +30,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
     @Override
     public void onBindViewHolder(@NonNull UserListRecyclerViewHolder holder, int position) {
         holder.mName.setText(userList.get(position).getName());
-        holder.mPhone.setText(userList.get(position).getName());
+        holder.mPhone.setText(userList.get(position).getPhone());
     }
 
     @Override
@@ -46,7 +46,6 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.UserLi
             super(itemView);
             mName = itemView.findViewById(R.id.name);
             mPhone = itemView.findViewById(R.id.phone);
-
         }
     }
 }
